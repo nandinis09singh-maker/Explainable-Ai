@@ -17,7 +17,7 @@
   <div class="wrap">
     <a class="brand" href="#top"><i></i>Data Dynamos XAI</a>
     <nav class="links" id="links" aria-label="Sections">
-      <a href="#problem">Problem</a><a href="#solution">Solution</a><a href="#demo">Live demo</a><a href="#market">Market</a><a href="#compete">Compare</a><a href="#roadmap">Roadmap</a><a href="#console">Console</a><a href="#ask">The ask</a>
+      <a href="#problem">Problem</a><a href="#solution">Solution</a><a href="#demo">Live demo</a><a href="#try">Try it</a><a href="#market">Market</a><a href="#compete">Compare</a><a href="#roadmap">Roadmap</a><a href="#console">Console</a><a href="#ask">The ask</a>
     </nav>
     <div class="right">
       <button class="icon-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
@@ -40,6 +40,7 @@
       <p class="lede">A multilingual, audit-ready explainability layer for AI decisions in banking, insurance and healthcare. Generated automatically, formatted to RBI, IRDAI or SEBI templates, in 22 Indian languages.</p>
       <div class="cta">
         <a class="btn pri" href="#demo">See how it works</a>
+        <a class="btn" href="#try">Test your own case</a>
         <button class="btn" data-open="signup">Partner with us</button>
       </div>
       <div class="meta"><span class="tag">Team Data Dynamos</span><span class="tag">A.P. Shah Institute of Technology</span><span class="tag">Working prototype</span></div>
@@ -122,6 +123,50 @@
         </div>
       </div>
       <p class="note" style="margin-top:20px">Illustrative output. The prototype currently produces English draft explanations end to end for a credit-scoring model; the Hindi, Marathi and Tamil text shows the target output of the localization layer and still needs review by a human compliance officer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRY -->
+<section id="try">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Test your own case</p><h2>Bring a real problem. See why the model decides what it does.</h2>
+      <p class="lede">Enter a borrower's details, pick a language, and get the decision, the reasons, and the smallest change that would flip a decline. It uses a simple illustrative scorecard, not a real lender's model.</p></div>
+    <div class="try rv">
+      <div class="card">
+        <h3>Borrower details</h3>
+        <div class="field" style="margin-top:16px"><label for="tScore">Credit score <output id="oScore"></output></label><input type="range" id="tScore" min="300" max="900" value="612"></div>
+        <div class="field"><label for="tDti">Monthly EMIs as share of income <output id="oDti"></output></label><input type="range" id="tDti" min="0" max="100" value="58"></div>
+        <div class="field"><label for="tMonths">Length of credit history <output id="oMonths"></output></label><input type="range" id="tMonths" min="0" max="240" value="14"></div>
+        <div class="field"><label for="tYears">Years of steady salary <output id="oYears"></output></label><input type="range" id="tYears" min="0" max="20" value="3"></div>
+        <div class="field"><label for="tLate">Late EMIs in the last 12 months <output id="oLate"></output></label><input type="range" id="tLate" min="0" max="6" value="0"></div>
+        <div class="ctrls">
+          <select id="tLang" aria-label="Language"><option value="en">English</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option><option value="ta">தமிழ்</option></select>
+          <select id="tTpl" aria-label="Template"><option>RBI</option><option>IRDAI</option><option>SEBI</option></select>
+        </div>
+        <p class="eyebrow" style="margin-block:6px 10px">Quick actions</p>
+        <div class="cta">
+          <button class="btn sm" id="tEx1">Load a declined case</button>
+          <button class="btn sm" id="tEx2">Load an approved case</button>
+          <button class="btn sm" id="tRand">Randomize</button>
+          <button class="btn sm" id="tReset">Reset</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="rowhead"><span id="tId">CASE</span><span class="pill" id="tPill"></span></div>
+        <div class="shap" id="tShap"></div>
+        <div class="axis-note"><span>← decline</span><span>approval →</span></div>
+        <div class="score"><span>Approval score</span><div class="meter"><i id="tMeter"></i><b title="Threshold 0.50"></b></div><span id="tScoreTxt"></span></div>
+        <div class="explain" id="tExplain" style="margin-top:18px;min-height:0"></div>
+        <div class="flip" id="tFlip"></div>
+        <div class="cta" style="margin-top:16px">
+          <button class="btn pri sm" id="tCopy">Copy explanation</button>
+          <button class="btn sm" id="tSave">Save to audit log</button>
+          <button class="btn sm" id="tReport">Open audit report</button>
+        </div>
+        <div class="cta" style="margin-top:12px;align-items:center"><span class="note" style="margin:0">Was this explanation clear?</span><button class="btn sm" data-fb="clear">Clear</button><button class="btn sm" data-fb="confusing">Confusing</button></div>
+        <p class="note" id="tMsg" role="status"></p>
+      </div>
     </div>
   </div>
 </section>
@@ -241,6 +286,7 @@
       <h2 style="max-width:20ch">Let's make AI decisions explainable in every Indian language.</h2>
       <p class="lede" style="margin-block:14px 24px">Create an account to explore the console and tell us your organization type. Pilot partners get priority access.</p>
       <div class="cta" id="finalCta"></div>
+      <p class="note" id="finalMsg" role="status" style="margin-top:12px"></p>
     </div>
   </div>
 </section>
