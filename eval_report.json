@@ -1,0 +1,245 @@
+{
+  "model_version": "demo-v1",
+  "trained_at": "2026-10-10T18:49:46.947915+00:00",
+  "algorithm": "GradientBoostingClassifier (scikit-learn), explained with SHAP TreeExplainer",
+  "target": "Probability of default on a synthetic loan; contributions are in log-odds",
+  "features": [
+    "annual_income",
+    "loan_amount",
+    "existing_monthly_debt",
+    "credit_utilization",
+    "repayment_history_score"
+  ],
+  "thresholds": {
+    "approve_below": 0.15,
+    "reject_at_or_above": 0.4
+  },
+  "dataset": {
+    "name": "Synthetic lending data (seeded, reproducible)",
+    "train_rows": 9000,
+    "evaluation_rows": 3000,
+    "monitoring_window_rows": 1500,
+    "group_attributes_used_for_evaluation_only": [
+      "gender",
+      "age_group",
+      "region"
+    ],
+    "note": "Group attributes are NOT model inputs. Rural and younger applicants have lower synthetic incomes, which creates a proxy effect that the fairness page can surface."
+  },
+  "evaluation_period": {
+    "generated_at": "2026-10-10T18:49:46.947915+00:00",
+    "description": "Single synthetic holdout plus one synthetic monitoring window"
+  },
+  "performance": {
+    "auc": 0.7777,
+    "brier_score": 0.1561,
+    "precision_at_reject_threshold": 0.5526,
+    "recall_at_reject_threshold": 0.5,
+    "observed_default_rate": 0.266,
+    "class_mix": {
+      "approve": 0.3627,
+      "review": 0.3967,
+      "reject": 0.2407
+    }
+  },
+  "calibration": [
+    {
+      "mean_predicted": 0.0422,
+      "observed_rate": 0.0233,
+      "n": 300
+    },
+    {
+      "mean_predicted": 0.0774,
+      "observed_rate": 0.06,
+      "n": 300
+    },
+    {
+      "mean_predicted": 0.1091,
+      "observed_rate": 0.1067,
+      "n": 300
+    },
+    {
+      "mean_predicted": 0.1447,
+      "observed_rate": 0.1733,
+      "n": 300
+    },
+    {
+      "mean_predicted": 0.1862,
+      "observed_rate": 0.2,
+      "n": 300
+    },
+    {
+      "mean_predicted": 0.2359,
+      "observed_rate": 0.2533,
+      "n": 300
+    },
+    {
+      "mean_predicted": 0.3027,
+      "observed_rate": 0.3,
+      "n": 300
+    },
+    {
+      "mean_predicted": 0.3906,
+      "observed_rate": 0.3633,
+      "n": 300
+    },
+    {
+      "mean_predicted": 0.5063,
+      "observed_rate": 0.4867,
+      "n": 300
+    },
+    {
+      "mean_predicted": 0.7005,
+      "observed_rate": 0.6933,
+      "n": 300
+    }
+  ],
+  "fairness": {
+    "gender": {
+      "groups": [
+        {
+          "group": "Female",
+          "n": 1317,
+          "approval_rate": 0.3493,
+          "reject_rate": 0.2384,
+          "approval_rate_among_non_defaulters": 0.4397,
+          "observed_default_rate": 0.2696
+        },
+        {
+          "group": "Male",
+          "n": 1683,
+          "approval_rate": 0.3731,
+          "reject_rate": 0.2424,
+          "approval_rate_among_non_defaulters": 0.4637,
+          "observed_default_rate": 0.2632
+        }
+      ],
+      "demographic_parity_difference": 0.0239,
+      "disparate_impact_ratio": 0.936,
+      "equal_opportunity_difference": 0.024
+    },
+    "age_group": {
+      "groups": [
+        {
+          "group": "18-30",
+          "n": 926,
+          "approval_rate": 0.378,
+          "reject_rate": 0.2376,
+          "approval_rate_among_non_defaulters": 0.4656,
+          "observed_default_rate": 0.2624
+        },
+        {
+          "group": "31-45",
+          "n": 1332,
+          "approval_rate": 0.3581,
+          "reject_rate": 0.2312,
+          "approval_rate_among_non_defaulters": 0.4533,
+          "observed_default_rate": 0.268
+        },
+        {
+          "group": "46+",
+          "n": 742,
+          "approval_rate": 0.3518,
+          "reject_rate": 0.2615,
+          "approval_rate_among_non_defaulters": 0.4375,
+          "observed_default_rate": 0.2668
+        }
+      ],
+      "demographic_parity_difference": 0.0262,
+      "disparate_impact_ratio": 0.9306,
+      "equal_opportunity_difference": 0.0281
+    },
+    "region": {
+      "groups": [
+        {
+          "group": "Rural",
+          "n": 1170,
+          "approval_rate": 0.3812,
+          "reject_rate": 0.2299,
+          "approval_rate_among_non_defaulters": 0.4748,
+          "observed_default_rate": 0.253
+        },
+        {
+          "group": "Urban",
+          "n": 1830,
+          "approval_rate": 0.3508,
+          "reject_rate": 0.2475,
+          "approval_rate_among_non_defaulters": 0.439,
+          "observed_default_rate": 0.2743
+        }
+      ],
+      "demographic_parity_difference": 0.0304,
+      "disparate_impact_ratio": 0.9203,
+      "equal_opportunity_difference": 0.0358
+    }
+  },
+  "drift": {
+    "psi": {
+      "annual_income": 0.055,
+      "loan_amount": 0.031,
+      "existing_monthly_debt": 0.0215,
+      "credit_utilization": 0.782,
+      "repayment_history_score": 0.3468
+    },
+    "baseline": {
+      "annual_income": {
+        "mean": 593891.695,
+        "std": 322912.125
+      },
+      "loan_amount": {
+        "mean": 251704.576,
+        "std": 199485.831
+      },
+      "existing_monthly_debt": {
+        "mean": 12479.412,
+        "std": 10754.344
+      },
+      "credit_utilization": {
+        "mean": 0.402,
+        "std": 0.202
+      },
+      "repayment_history_score": {
+        "mean": 0.717,
+        "std": 0.16
+      }
+    },
+    "window_means": {
+      "annual_income": 528323.603,
+      "loan_amount": 223600.16,
+      "existing_monthly_debt": 11195.49,
+      "credit_utilization": 0.591,
+      "repayment_history_score": 0.619
+    },
+    "window_performance": {
+      "n": 1500,
+      "auc": 0.7744,
+      "mean_predicted_risk": 0.45,
+      "observed_default_rate": 0.4447,
+      "reference_mean_predicted_risk": 0.2661
+    },
+    "psi_levels": {
+      "watch": 0.1,
+      "alert": 0.2
+    }
+  },
+  "alerts": [
+    {
+      "severity": "warning",
+      "type": "drift",
+      "created_at": "2026-10-10T18:49:46.947915+00:00",
+      "message": "Population stability index for credit_utilization is 0.78 (threshold 0.20)."
+    },
+    {
+      "severity": "warning",
+      "type": "drift",
+      "created_at": "2026-10-10T18:49:46.947915+00:00",
+      "message": "Population stability index for repayment_history_score is 0.35 (threshold 0.20)."
+    },
+    {
+      "severity": "info",
+      "type": "model",
+      "created_at": "2026-10-10T18:49:46.947915+00:00",
+      "message": "Model demo-v1 trained and evaluated on synthetic data."
+    }
+  ]
+}

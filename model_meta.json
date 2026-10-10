@@ -1,0 +1,181 @@
+{
+  "model_version": "demo-v1",
+  "trained_on": "2026-10-10",
+  "features": [
+    "annual_income",
+    "loan_amount",
+    "existing_monthly_debt",
+    "credit_utilization",
+    "repayment_history_score"
+  ],
+  "thresholds": {
+    "approve_below": 0.25,
+    "reject_at_or_above": 0.5
+  },
+  "probability_meaning": "Estimated probability of default on the synthetic training distribution.",
+  "dataset": {
+    "name": "Synthetic lending data (generated, seed 42)",
+    "train_rows": 4200,
+    "eval_rows": 1800,
+    "evaluation_period": "Synthetic hold-out set, generated 2026-10-10",
+    "drift_window": "Simulated recent window (1,500 rows) with shifted income and utilisation"
+  },
+  "performance": {
+    "roc_auc": 0.7838,
+    "accuracy_at_review_cutoff": 0.7094,
+    "precision_at_review_cutoff": 0.4748,
+    "recall_at_review_cutoff": 0.7181,
+    "brier_score": 0.1555,
+    "default_rate": 0.27
+  },
+  "calibration": [
+    {
+      "predicted": 0.0607,
+      "observed": 0.0578
+    },
+    {
+      "predicted": 0.0969,
+      "observed": 0.08
+    },
+    {
+      "predicted": 0.1302,
+      "observed": 0.1244
+    },
+    {
+      "predicted": 0.1746,
+      "observed": 0.1644
+    },
+    {
+      "predicted": 0.2332,
+      "observed": 0.2578
+    },
+    {
+      "predicted": 0.3183,
+      "observed": 0.3067
+    },
+    {
+      "predicted": 0.4498,
+      "observed": 0.5067
+    },
+    {
+      "predicted": 0.6868,
+      "observed": 0.6622
+    }
+  ],
+  "class_mix": {
+    "approve": 1065,
+    "review": 466,
+    "reject": 269
+  },
+  "fairness": {
+    "region": {
+      "groups": [
+        {
+          "group": "North",
+          "n": 461,
+          "approval_rate": 0.5987,
+          "mean_risk": 0.266
+        },
+        {
+          "group": "South",
+          "n": 431,
+          "approval_rate": 0.6102,
+          "mean_risk": 0.2577
+        },
+        {
+          "group": "East",
+          "n": 465,
+          "approval_rate": 0.6043,
+          "mean_risk": 0.2691
+        },
+        {
+          "group": "West",
+          "n": 443,
+          "approval_rate": 0.553,
+          "mean_risk": 0.2823
+        }
+      ],
+      "max_gap": 0.0572,
+      "disparate_impact_ratio": 0.9063
+    },
+    "age_band": {
+      "groups": [
+        {
+          "group": "18-30",
+          "n": 554,
+          "approval_rate": 0.5722,
+          "mean_risk": 0.2681
+        },
+        {
+          "group": "31-45",
+          "n": 802,
+          "approval_rate": 0.6035,
+          "mean_risk": 0.2672
+        },
+        {
+          "group": "46+",
+          "n": 444,
+          "approval_rate": 0.5946,
+          "mean_risk": 0.2727
+        }
+      ],
+      "max_gap": 0.0313,
+      "disparate_impact_ratio": 0.9481
+    }
+  },
+  "drift": [
+    {
+      "feature": "annual_income",
+      "psi": 0.2766,
+      "status": "alert"
+    },
+    {
+      "feature": "loan_amount",
+      "psi": 0.1109,
+      "status": "watch"
+    },
+    {
+      "feature": "existing_monthly_debt",
+      "psi": 0.1134,
+      "status": "watch"
+    },
+    {
+      "feature": "credit_utilization",
+      "psi": 0.3162,
+      "status": "alert"
+    },
+    {
+      "feature": "repayment_history_score",
+      "psi": 0.0076,
+      "status": "stable"
+    }
+  ],
+  "reference": {
+    "annual_income": {
+      "mean": 563947.0919,
+      "std": 268320.4798
+    },
+    "loan_amount": {
+      "mean": 281234.1612,
+      "std": 199073.124
+    },
+    "existing_monthly_debt": {
+      "mean": 14152.8714,
+      "std": 11148.6589
+    },
+    "credit_utilization": {
+      "mean": 0.3909,
+      "std": 0.1874
+    },
+    "repayment_history_score": {
+      "mean": 0.7382,
+      "std": 0.1557
+    }
+  },
+  "limitations": [
+    "Trained on synthetic data only; the numbers do not describe any real lender or population.",
+    "Group attributes (region, age band) are synthetic and are not model inputs; fairness checks compare outcomes only.",
+    "Feature contributions are SHAP values in log-odds units for a tree model; they describe the model, not causal effects.",
+    "Thresholds are demonstration values, not a recommended underwriting policy."
+  ]
+}
