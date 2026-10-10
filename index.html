@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Data Dynamos XAI</title>
+<meta name="description" content="Multilingual, audit-ready explainable AI for BFSI, insurance and healthcare in India.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Tamil:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="progress" id="prog"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><i></i>Data Dynamos XAI</a>
+    <nav class="links" id="links" aria-label="Sections">
+      <a href="#problem">Problem</a><a href="#solution">Solution</a><a href="#demo">Live demo</a><a href="#market">Market</a><a href="#compete">Compare</a><a href="#roadmap">Roadmap</a><a href="#console">Console</a><a href="#ask">The ask</a>
+    </nav>
+    <div class="right">
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle light and dark theme" title="Toggle theme">◐</button>
+      <div id="authArea"></div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" style="padding-top:clamp(40px,7vw,80px)">
+  <div class="glyphs" aria-hidden="true">
+    <span style="top:4%;left:-2%">क्यों?</span><span style="top:46%;left:44%;animation-delay:-6s">ஏன்?</span><span style="top:70%;left:2%;animation-delay:-11s">का?</span><span style="top:10%;left:62%;animation-delay:-3s">why?</span>
+  </div>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Problem statement · Explainable AI for regulated industries</p>
+      <h1 style="margin-top:16px">Every AI decision, <em>explained</em> in the customer's own language.</h1>
+      <p class="lede">A multilingual, audit-ready explainability layer for AI decisions in banking, insurance and healthcare. Generated automatically, formatted to RBI, IRDAI or SEBI templates, in 22 Indian languages.</p>
+      <div class="cta">
+        <a class="btn pri" href="#demo">See how it works</a>
+        <button class="btn" data-open="signup">Partner with us</button>
+      </div>
+      <div class="meta"><span class="tag">Team Data Dynamos</span><span class="tag">A.P. Shah Institute of Technology</span><span class="tag">Working prototype</span></div>
+    </div>
+    <div class="card ask-card" aria-label="Example of an explained decision">
+      <div class="rowhead"><span>DECISION LN-20417</span><span class="pill bad">DECLINED</span></div>
+      <p class="ask-q" id="heroQ">Why was this loan declined?</p>
+      <div class="shap" id="heroShap" style="margin-top:18px"></div>
+      <div class="axis-note"><span>← pushes toward decline</span><span>toward approval →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" class="alt">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">The pain point</p><h2>Regulators ask for reasons. Compliance teams write them by hand, in English.</h2>
+      <p class="lede">RBI, IRDAI, SEBI and the IndiaAI Mission now expect AI explainability for credit, underwriting and healthcare decisions. No tool writes regulator-ready explanations in Hindi and regional languages, so every model decision gets a manual, English-only justification.</p></div>
+    <div class="gap-card rv">
+      <div class="card"><div class="bignum" style="color:var(--saf)" data-count="4">0</div><p style="margin-top:8px"><b>Regulatory bodies and missions</b> pushing for explainability</p><div class="regs"><span>RBI</span><span>IRDAI</span><span>SEBI</span><span>IndiaAI Mission</span></div></div>
+      <div class="card"><div class="bignum" style="color:var(--neg)" data-count="0">0</div><p style="margin-top:8px"><b>Multilingual XAI products</b> in the Indian market today</p><div class="regs"><span>Hindi</span><span>Marathi</span><span>Tamil</span><span>+19 more</span></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="card rv"><p class="eyebrow">Why now</p><h3 style="margin-top:10px">Best practice is becoming a mandate</h3><p class="muted" style="margin-top:10px">IndiaAI's governance guidelines and RBI's FREE-AI framework are turning explainability into a compliance requirement, with audit deadlines already approaching.</p></div>
+      <div class="card rv"><p class="eyebrow">The window</p><h3 style="margin-top:10px">A narrow first-mover gap</h3><p class="muted" style="margin-top:10px">No multilingual XAI product exists in India. Global players have not localized yet, and that will not last.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Proposed solution</p><h2>Audit-ready explanations, generated automatically, in 22 Indian languages.</h2>
+      <p class="lede">It plugs into an existing credit, underwriting or diagnostic model through an API, extracts feature-level reasoning, and turns it into a compliance narrative in the format the regulator expects.</p></div>
+    <div class="pipe rv" aria-label="How it works">
+      <div class="node"><span class="step">IN</span><b>Client model</b><small>Credit, underwriting or diagnostic</small></div>
+      <div class="node"><span class="step">API</span><b>Plug-in call</b><small>One request per decision</small></div>
+      <div class="node"><span class="step">EXTRACT</span><b>Explainability engine</b><small>SHAP, LIME, Captum</small></div>
+      <div class="node"><span class="step">TRANSLATE</span><b>Localization layer</b><small>IndicTrans2 / NLLB, tuned on regulatory terms</small></div>
+      <div class="node"><span class="step">FORMAT</span><b>Compliance narrative</b><small>RBI, IRDAI or SEBI template</small></div>
+      <div class="node"><span class="step">OUT</span><b>Regulator or customer</b><small>Audit-ready, in their language</small></div>
+    </div>
+    <div class="grid g4 stack">
+      <div class="card rv"><span class="mono">Explainability engine</span><h3>SHAP, LIME, Captum</h3><p class="muted">Runs on top of the client's own model. No retraining.</p></div>
+      <div class="card rv"><span class="mono">Localization layer</span><h3>IndicTrans2 / NLLB</h3><p class="muted">Fine-tuned on regulatory vocabulary, not general text.</p></div>
+      <div class="card rv"><span class="mono">Service layer</span><h3>FastAPI + PostgreSQL</h3><p class="muted">A microservice with an audit log of every explanation.</p></div>
+      <div class="card rv"><span class="mono">Interface</span><h3>React dashboard</h3><p class="muted">Built for compliance officers to review and export.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section id="demo" class="alt">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Interactive demo</p><h2>Pick a decision. Pick a language. Read the reasons.</h2>
+      <p class="lede">The bars show how much each input pushed the model toward approval or decline. The explanation underneath is built from those same numbers.</p></div>
+    <div class="card rv">
+      <div class="ctrls">
+        <div class="seg" role="group" aria-label="Applicant"><button id="caseA" aria-pressed="true">Applicant A</button><button id="caseB" aria-pressed="false">Applicant B</button></div>
+        <label class="sr-only" for="langSel" style="position:absolute;left:-9999px">Language</label>
+        <select id="langSel"><option value="en">English</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option><option value="ta">தமிழ்</option></select>
+        <label for="tplSel" style="position:absolute;left:-9999px">Template</label>
+        <select id="tplSel"><option>RBI</option><option>IRDAI</option><option>SEBI</option></select>
+      </div>
+      <div class="demo">
+        <div>
+          <div class="rowhead"><span id="dId">DECISION</span><span class="pill" id="dPill"></span></div>
+          <div class="shap" id="demoShap"></div>
+          <div class="axis-note"><span>← decline</span><span>approval →</span></div>
+          <div class="score"><span>Approval score</span><div class="meter"><i id="meterFill"></i><b title="Threshold 0.50"></b></div><span id="scoreTxt"></span></div>
+        </div>
+        <div>
+          <div class="explain" id="explainBox" lang="en"></div>
+          <div class="cta" style="margin-top:14px">
+            <button class="btn pri sm" id="saveLog">Save to audit log</button>
+            <button class="btn sm" id="openReport">Open audit report</button>
+          </div>
+          <p class="note" id="demoMsg">Saving and reports need a free account.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:20px">Illustrative output. The prototype currently produces English draft explanations end to end for a credit-scoring model; the Hindi, Marathi and Tamil text shows the target output of the localization layer and still needs review by a human compliance officer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Market size and business model</p><h2>A USD 1.2B market by 2028, and a clear first slice.</h2></div>
+    <div class="grid g2">
+      <div class="card rv chart pre" id="mktChart">
+        <h3>TAM, SAM and SOM <span class="sample">log scale</span></h3>
+        <div class="hb" style="margin-top:18px">
+          <div class="r"><div class="top"><span><b>TAM</b> · India AI governance and XAI</span><b class="mono">USD ~1.2B</b></div><div class="bg"><div class="fg" data-w="100" style="background:var(--c3)"></div></div></div>
+          <div class="r"><div class="top"><span><b>SAM</b> · Regulated BFSI and healthcare AI adopters</span><b class="mono">USD ~300M</b></div><div class="bg"><div class="fg" data-w="80" style="background:var(--c1)"></div></div></div>
+          <div class="r"><div class="top"><span><b>SOM</b> · Pilot-stage NBFCs, insurers, diagnostics (Yr 1-2)</span><b class="mono">USD ~8M</b></div><div class="bg"><div class="fg" data-w="29" style="background:var(--saf)"></div></div></div>
+        </div>
+        <p class="note">Bar lengths use a log scale so the SOM stays visible next to the TAM.</p>
+      </div>
+      <div class="card rv chart pre" id="econChart">
+        <h3>Pricing and unit economics</h3>
+        <p class="muted" style="margin-top:8px">SaaS subscription per model monitored, plus tiered per-explanation API pricing for high-volume issuers. Software-only delivery keeps margins high.</p>
+        <p class="mono" style="margin-top:18px;font-size:.8rem">GROSS MARGIN TARGET</p>
+        <div class="bignum" style="font-size:2.8rem;color:var(--saf)">~75-80%</div>
+        <div class="band"><i></i><span style="left:0">0%</span><span style="left:calc(75% - 12px)">75%</span><span style="right:0">100%</span></div>
+        <p class="note" style="margin-top:44px">CAC stays low through direct sales to Chief Compliance Officers and partnerships with consulting firms already inside BFSI and insurance audit cycles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETE -->
+<section id="compete" class="alt">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Go-to-market and competition</p><h2>Built for Indian regulators, not retrofitted.</h2>
+      <p class="lede">First customer: a pilot with a mid-size NBFC or insurer already facing an RBI or IRDAI audit deadline, reached through compliance-consulting firms and fintech industry bodies instead of cold outbound.</p></div>
+    <div class="grid g2">
+      <div class="card rv tbl-wrap"><table>
+        <thead><tr><th>Capability</th><th>Fiddler / Arthur / TruEra</th><th>Us</th></tr></thead>
+        <tbody>
+          <tr><td>Indian regulatory templates (RBI / IRDAI / SEBI)</td><td class="no">No</td><td class="yes">Yes</td></tr>
+          <tr><td>22 Indian language support</td><td class="no">No</td><td class="yes">Yes</td></tr>
+          <tr><td>DPDP-aligned data handling</td><td class="part">Partial</td><td class="yes">Yes</td></tr>
+          <tr><td>Pricing fit for Indian NBFCs</td><td class="no">No</td><td class="yes">Yes</td></tr>
+        </tbody></table></div>
+      <div class="card rv chart pre" id="radar"><h3>Fit profile <span class="sample">Yes = 1 · Partial = 0.5 · No = 0</span></h3><div class="legend" style="margin-top:12px"><span><i style="background:var(--saf)"></i>Us</span><span><i style="background:var(--c5)"></i>Fiddler / Arthur / TruEra</span></div><div id="radarSvg"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Traction and roadmap</p><h2>A working prototype, two NBFC conversations, four quarters of plan.</h2>
+      <p class="lede">The prototype is a SHAP-based explanation generator for a credit-scoring model that produces English draft explanations end to end. Pilot conversations are underway with two NBFCs ahead of their next RBI audit cycle.</p></div>
+    <div class="road rv" id="road">
+      <div class="it"><div class="q">Q1</div><p>Pilot live with 1 NBFC on credit-scoring explanations</p></div>
+      <div class="it"><div class="q">Q2</div><p>IRDAI-focused healthcare underwriting pilot</p></div>
+      <div class="it"><div class="q">Q3</div><p>Scale the localization engine to all 22 scheduled languages</p></div>
+      <div class="it"><div class="q">Q4</div><p>SOC 2 / ISO 27001 certification for enterprise rollout</p></div>
+    </div>
+    <div class="card rv" style="margin-top:44px">
+      <h3>Language rollout <span class="sample">English live · 21 more targeted for Q3</span></h3>
+      <div class="langs" id="langGrid" style="margin-top:16px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSOLE -->
+<section id="console" class="alt">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Compliance console</p><h2>What a compliance officer sees after go-live.</h2>
+      <p class="lede">Charts below use sample data to show the dashboard design. Sign in to open the audit log, which also holds every explanation you save from the demo.</p></div>
+    <div class="console rv" id="consoleBox">
+      <div class="ctop">
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-tab="ov">Overview</button><button role="tab" aria-selected="false" data-tab="log">Audit log</button></div>
+        <span class="mono muted" id="consoleWho" style="font-size:.78rem">Viewing sample data</span>
+      </div>
+      <div class="cbody">
+        <div id="tab-ov">
+          <div class="kpis" id="kpis"></div>
+          <div class="grid g2" style="grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)">
+            <div class="panel chart pre" id="lineBox"><h3>Explanations generated per week <span class="sample">sample data</span></h3><div class="legend"><span><i style="background:var(--c3)"></i>English</span><span><i style="background:var(--c1)"></i>Regional languages</span></div><div id="lineSvg"></div></div>
+            <div class="panel chart pre" id="donutBox"><h3>Language mix <span class="sample">sample data</span></h3><div class="donutwrap"><div id="donutSvg"></div><div class="legend" id="donutLeg" style="flex-direction:column;gap:6px;margin:0"></div></div></div>
+          </div>
+          <div class="panel chart pre" id="driverBox" style="margin-top:20px"><h3>Top drivers of declined decisions <span class="sample">sample data · mean |SHAP|</span></h3><div class="hb" id="drivers"></div></div>
+        </div>
+        <div id="tab-log" hidden>
+          <div class="locked panel" style="min-height:260px">
+            <div class="veil"><b>Audit log is for signed-in compliance users</b><p class="muted" style="max-width:40ch">Create a free account to browse the log and save explanations from the demo.</p><div class="cta" style="justify-content:center"><button class="btn pri sm" data-open="signup">Create account</button><button class="btn sm" data-open="signin">Sign in</button></div></div>
+            <div class="tbl-wrap"><table><thead><tr><th>ID</th><th>Logged</th><th>Outcome</th><th>Language</th><th>Template</th><th>Text hash</th></tr></thead><tbody id="logBody"></tbody></table></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM + ASK -->
+<section id="ask">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Team and the ask</p><h2>Students who ship, with a compliance advisor who keeps it audit-grade.</h2>
+      <p class="lede">Team Data Dynamos, from A.P. Shah Institute of Technology, spans machine learning, NLP and localization, and full-stack development. We work closely with a compliance-domain advisor.</p></div>
+    <div class="grid g3 rv" style="margin-bottom:20px">
+      <div class="card"><span class="mono muted" style="font-size:.72rem">CREDIBILITY</span><h3 style="margin-top:8px">Working prototype</h3><p class="muted">A SHAP-based generator for credit scoring is already built.</p></div>
+      <div class="card"><span class="mono muted" style="font-size:.72rem">CREDIBILITY</span><h3 style="margin-top:8px">Hands-on with SHAP and LIME</h3><p class="muted">The methods regulators are starting to expect.</p></div>
+      <div class="card"><span class="mono muted" style="font-size:.72rem">CREDIBILITY</span><h3 style="margin-top:8px">Close to the frameworks</h3><p class="muted">Direct engagement with RBI, IRDAI and IndiaAI requirements.</p></div>
+    </div>
+    <div class="grid g2">
+      <div class="card flipcard rv ask"><span class="n">1</span><div><h3>Seed grant</h3><p class="muted">Funding to extend the prototype to 22-language coverage.</p></div></div>
+      <div class="card flipcard rv ask"><span class="n">2</span><div><h3>Sandbox introduction</h3><p class="muted">An introduction to an RBI or IRDAI regulatory sandbox.</p></div></div>
+      <div class="card flipcard rv ask"><span class="n">3</span><div><h3>Two pilot partnerships</h3><p class="muted">With BFSI or healthcare institutions.</p></div></div>
+      <div class="card flipcard rv ask"><span class="n">4</span><div><h3>Mentorship</h3><p class="muted">On regulatory-compliance product design.</p></div></div>
+    </div>
+    <div class="final rv" style="margin-top:40px">
+      <h2 style="max-width:20ch">Let's make AI decisions explainable in every Indian language.</h2>
+      <p class="lede" style="margin-block:14px 24px">Create an account to explore the console and tell us your organization type. Pilot partners get priority access.</p>
+      <div class="cta"><button class="btn pri" data-open="signup">Create account</button><button class="btn" data-open="signin">Sign in</button></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>Team Data Dynamos · A.P. Shah Institute of Technology</span><span>Problem statement: Explainable AI for Regulated Industries</span></div></footer>
+
+<div class="modal" id="authModal" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="dialog">
+    <div class="dtop"><div class="seg" style="min-width:210px"><button id="tabIn" aria-pressed="true">Sign in</button><button id="tabUp" aria-pressed="false">Sign up</button></div><button class="icon-btn" id="authClose" aria-label="Close">✕</button></div>
+    <h3 id="authTitle" style="margin-bottom:6px">Sign in</h3>
+    <p class="note" style="margin:0 0 16px">Prototype accounts are kept only in this browser. Use a work email you do not mind storing here, and a throwaway password.</p>
+    <form id="authForm" novalidate>
+      <div class="field up" hidden><label for="fName">Full name</label><input id="fName" autocomplete="name"></div>
+      <div class="field"><label for="fEmail">Work email</label><input id="fEmail" type="email" autocomplete="email"></div>
+      <div class="field up" hidden><label for="fOrg">Organization type</label><select id="fOrg"><option>NBFC</option><option>Bank</option><option>Insurer</option><option>Hospital or diagnostics</option><option>Compliance consulting</option><option>Regulator or industry body</option><option>Other</option></select></div>
+      <div class="field up" hidden><label for="fRole">Role</label><select id="fRole"><option>Chief Compliance Officer</option><option>Compliance analyst</option><option>Data scientist</option><option>Risk officer</option><option>Other</option></select></div>
+      <div class="field"><label for="fPw">Password</label><input id="fPw" type="password" autocomplete="current-password"></div>
+      <div class="err" id="authErr" role="alert"></div>
+      <button class="btn pri" style="width:100%;justify-content:center" id="authSubmit">Sign in</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="repModal" hidden role="dialog" aria-modal="true" aria-label="Audit report">
+  <div class="dialog wide">
+    <div class="dtop"><h3>Audit report</h3><button class="icon-btn" id="repClose" aria-label="Close">✕</button></div>
+    <pre class="rep" id="repText"></pre>
+    <button class="btn pri sm" id="repCopy">Copy report</button> <span class="note" id="repMsg"></span>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
