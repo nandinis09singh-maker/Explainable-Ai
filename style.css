@@ -1,3 +1,6 @@
+[hidden]{display:none!important}
+body{margin:0}
+img{max-width:100%}
 /* Layout: sticky nav, full-width sections on a 1120px column, alternating surfaces; dark-first "audit ink" palette with saffron (action) and teal (explained) */
 :root{
   --bg:#0a1220;--bg2:#0e192d;--surf:#131f36;--surf2:#1a2946;--line:#26385c;
