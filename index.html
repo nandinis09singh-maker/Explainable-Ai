@@ -20,6 +20,7 @@
       <a href="#problem">Problem</a><a href="#solution">Solution</a><a href="#demo">Live demo</a><a href="#market">Market</a><a href="#compete">Compare</a><a href="#roadmap">Roadmap</a><a href="#console">Console</a><a href="#ask">The ask</a>
     </nav>
     <div class="right">
+      <button class="icon-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
       <button class="icon-btn" id="themeBtn" aria-label="Toggle light and dark theme" title="Toggle theme">◐</button>
       <div id="authArea"></div>
     </div>
@@ -87,6 +88,7 @@
       <div class="card rv"><span class="mono">Service layer</span><h3>FastAPI + PostgreSQL</h3><p class="muted">A microservice with an audit log of every explanation.</p></div>
       <div class="card rv"><span class="mono">Interface</span><h3>React dashboard</h3><p class="muted">Built for compliance officers to review and export.</p></div>
     </div>
+    <div class="cta rv" style="margin-top:32px"><a class="btn pri" href="#demo">Try the live demo</a><a class="btn" href="#market">See the market</a></div>
   </div>
 </section>
 
@@ -147,6 +149,7 @@
         <p class="note" style="margin-top:44px">CAC stays low through direct sales to Chief Compliance Officers and partnerships with consulting firms already inside BFSI and insurance audit cycles.</p>
       </div>
     </div>
+    <div class="cta rv" style="margin-top:32px"><a class="btn pri" href="#compete">Compare with competitors</a><a class="btn" href="#roadmap">View the roadmap</a></div>
   </div>
 </section>
 
@@ -184,6 +187,7 @@
       <h3>Language rollout <span class="sample">English live · 21 more targeted for Q3</span></h3>
       <div class="langs" id="langGrid" style="margin-top:16px"></div>
     </div>
+    <div class="cta rv" style="margin-top:32px"><a class="btn pri" href="#console">Open the compliance console</a><a class="btn" href="#ask">What we need</a></div>
   </div>
 </section>
 
@@ -236,11 +240,12 @@
     <div class="final rv" style="margin-top:40px">
       <h2 style="max-width:20ch">Let's make AI decisions explainable in every Indian language.</h2>
       <p class="lede" style="margin-block:14px 24px">Create an account to explore the console and tell us your organization type. Pilot partners get priority access.</p>
-      <div class="cta"><button class="btn pri" data-open="signup">Create account</button><button class="btn" data-open="signin">Sign in</button></div>
+      <div class="cta" id="finalCta"></div>
     </div>
   </div>
 </section>
 </main>
+<button class="totop" id="toTop" aria-label="Back to top" hidden>↑</button>
 
 <footer><div class="wrap"><span>Team Data Dynamos · A.P. Shah Institute of Technology</span><span>Problem statement: Explainable AI for Regulated Industries</span></div></footer>
 

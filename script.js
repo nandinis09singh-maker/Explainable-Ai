@@ -9,6 +9,12 @@ const root=document.documentElement;
 const saved=store.get('dd_theme',null);if(saved)root.setAttribute('data-theme',saved);
 $('#themeBtn').onclick=()=>{const cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');const n=cur==='dark'?'light':'dark';root.setAttribute('data-theme',n);store.set('dd_theme',n)};
 
+/* menu + back to top */
+const menuBtn=$('#menuBtn'),linksEl=$('#links');
+menuBtn.onclick=()=>{const o=linksEl.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)};
+linksEl.addEventListener('click',e=>{if(e.target.tagName==='A'){linksEl.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}});
+const toTop=$('#toTop');toTop.onclick=()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+addEventListener('scroll',()=>{toTop.hidden=scrollY<700},{passive:true});
 /* progress + active nav */
 const prog=$('#prog');
 addEventListener('scroll',()=>{const h=document.documentElement;prog.style.width=(scrollY/(h.scrollHeight-innerHeight)*100||0)+'%'},{passive:true});
@@ -111,7 +117,7 @@ function requireAuth(cb){if(user)cb();else{afterAuth=cb;openAuth('up')}}
 $('#tabIn').onclick=()=>setMode('in');$('#tabUp').onclick=()=>setMode('up');$('#authClose').onclick=closeAuth;
 $('#authModal').addEventListener('click',e=>{if(e.target.id==='authModal')closeAuth()});
 addEventListener('keydown',e=>{if(e.key==='Escape'){closeAuth();$('#repModal').hidden=true}});
-$$('[data-open]').forEach(b=>b.onclick=()=>openAuth(b.dataset.open==='signup'?'up':'in'));
+$$('[data-open]').forEach(b=>b.onclick=()=>{if(user&&b.dataset.open==='signup'){location.hash='ask'}else openAuth(b.dataset.open==='signup'?'up':'in')});
 $('#authForm').onsubmit=async e=>{
   e.preventDefault();const err=$('#authErr');err.textContent='';
   const email=$('#fEmail').value.trim().toLowerCase(),pw=$('#fPw').value,acc=store.get('dd_accounts',{});
@@ -135,6 +141,9 @@ function renderAuth(){
   if(user){area.innerHTML=`<div class="chip-user"><span class="avatar">${esc(user.name.trim()[0]||'?').toUpperCase()}</span><span class="muted" style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(user.name.split(' ')[0])}</span><button class="btn sm" id="outBtn">Sign out</button></div>`;$('#outBtn').onclick=()=>{user=null;store.set('dd_session',null);renderAuth()}}
   else{area.innerHTML=`<div class="right"><button class="btn sm" data-open="signin">Sign in</button><button class="btn pri sm" data-open="signup">Sign up</button></div>`;$$('[data-open]',area).forEach(b=>b.onclick=()=>openAuth(b.dataset.open==='signup'?'up':'in'))}
   document.body.classList.toggle('authed',!!user);
+  const fc=$('#finalCta');
+  if(user){fc.innerHTML='<a class="btn pri" href="#console">Open the console</a><a class="btn" href="#demo">Try the demo</a>'}
+  else{fc.innerHTML='<button class="btn pri" data-open="signup">Create account</button><button class="btn" data-open="signin">Sign in</button>';$$('[data-open]',fc).forEach(b=>b.onclick=()=>openAuth(b.dataset.open==='signup'?'up':'in'))}
   $('#consoleWho').textContent=user?`Signed in as ${user.name} · ${user.role}, ${user.org}`:'Viewing sample data';
   $('#demoMsg').textContent=user?'You can save this explanation to your audit log or open a report.':'Saving and reports need a free account.';
 }
@@ -150,14 +159,29 @@ function lineChart(){
   const path=d=>d.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join(' ');
   h+=`<path d="${path(REG)} L${x(11)} ${y(0)} L${x(0)} ${y(0)} Z" style="fill:var(--c1);opacity:.14"/>`;
   h+=`<path class="draw" pathLength="1" d="${path(ENG)}" style="fill:none;stroke:var(--c3);stroke-width:2.5"/><path class="draw" pathLength="1" d="${path(REG)}" style="fill:none;stroke:var(--c1);stroke-width:2.5"/>`;
+  h+=`<line id="xh" y1="${t}" y2="${H-b}" style="stroke:var(--muted);stroke-dasharray:3 3;opacity:0"/><circle id="hE" r="5" style="fill:var(--c3);opacity:0"/><circle id="hR" r="5" style="fill:var(--c1);opacity:0"/>`;
   h+=`<circle cx="${x(11)}" cy="${y(251)}" r="4.5" style="fill:var(--c3)"/><text x="${x(11)+8}" y="${y(251)-4}" class="ax" style="fill:var(--c3)">251</text><circle cx="${x(11)}" cy="${y(231)}" r="4.5" style="fill:var(--c1)"/><text x="${x(11)+8}" y="${y(231)+14}" class="ax" style="fill:var(--c1)">231</text>`;
   $('#lineSvg').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Weekly explanations: English grows from 120 to 251, regional languages from 0 to 231 across 12 weeks (sample data)">${h}</svg>`;
+  const box=$('#lineSvg');box.style.position='relative';
+  const tip=document.createElement('div');tip.className='tip';tip.hidden=true;box.appendChild(tip);
+  const svg=$('svg',box),xh=$('#xh',svg),hE=$('#hE',svg),hR=$('#hR',svg);
+  const show=ev=>{const rc=svg.getBoundingClientRect();const px=(ev.clientX-rc.left)/rc.width*W;let i=Math.round((px-l)/((W-l-r)/11));i=Math.max(0,Math.min(11,i));
+    xh.setAttribute('x1',x(i));xh.setAttribute('x2',x(i));xh.style.opacity=1;
+    hE.setAttribute('cx',x(i));hE.setAttribute('cy',y(ENG[i]));hE.style.opacity=1;hR.setAttribute('cx',x(i));hR.setAttribute('cy',y(REG[i]));hR.style.opacity=1;
+    tip.innerHTML=`<b>${WEEKS[i]}</b><br><span style="color:var(--c3)">English ${ENG[i]}</span><br><span style="color:var(--c1)">Regional ${REG[i]}</span><br>Total ${ENG[i]+REG[i]}`;
+    tip.hidden=false;const left=x(i)/W*rc.width;tip.style.left=(i>7?left-tip.offsetWidth-12:left+12)+'px'};
+  const hide=()=>{tip.hidden=true;xh.style.opacity=0;hE.style.opacity=0;hR.style.opacity=0};
+  svg.addEventListener('pointermove',show);svg.addEventListener('pointerdown',show);svg.addEventListener('pointerleave',hide);
 }
 const MIX=[['English',38,'--c3'],['Hindi',27,'--c1'],['Marathi',12,'--c2'],['Tamil',9,'--c4'],['Others',14,'--c5']];
 function donut(){
   let off=0,h='';
-  MIX.forEach(([n,v,c])=>{h+=`<circle r="15.915" cx="21" cy="21" fill="none" stroke-width="6" style="stroke:var(${c})" stroke-dasharray="${v-.6} ${100-v+.6}" stroke-dashoffset="${25-off}"/>`;off+=v});
-  $('#donutSvg').innerHTML=`<svg viewBox="0 0 42 42" role="img" aria-label="Language mix of explanations (sample data)">${h}<text x="21" y="20.5" text-anchor="middle" style="font:600 6px var(--f-display);fill:var(--fg)">${100-MIX[0][1]}%</text><text x="21" y="26" text-anchor="middle" style="font:3px var(--f-mono);fill:var(--muted)">non-English</text></svg>`;
+  MIX.forEach(([n,v,c])=>{h+=`<circle class="seg-d" tabindex="0" data-n="${n}" data-v="${v}" r="15.915" cx="21" cy="21" fill="none" stroke-width="6" style="stroke:var(${c})" stroke-dasharray="${v-.6} ${100-v+.6}" stroke-dashoffset="${25-off}"/>`;off+=v});
+  $('#donutSvg').innerHTML=`<svg viewBox="0 0 42 42" role="img" aria-label="Language mix of explanations (sample data)">${h}<text id="dcv" pointer-events="none" x="21" y="20.5" text-anchor="middle" style="font:600 6px var(--f-display);fill:var(--fg)">${100-MIX[0][1]}%</text><text id="dcl" pointer-events="none" x="21" y="26" text-anchor="middle" style="font:3px var(--f-mono);fill:var(--muted)">non-English</text></svg>`;
+  const segs=$$('.seg-d',$('#donutSvg')),dv=$('#dcv'),dl=$('#dcl'),v0=dv.textContent,l0=dl.textContent;
+  const hov=s=>{segs.forEach(o=>o.style.opacity=o===s?1:.3);dv.textContent=s.dataset.v+'%';dl.textContent=s.dataset.n};
+  const unhov=()=>{segs.forEach(o=>o.style.opacity=1);dv.textContent=v0;dl.textContent=l0};
+  segs.forEach(s=>{s.addEventListener('pointerenter',()=>hov(s));s.addEventListener('focus',()=>hov(s));s.addEventListener('pointerleave',unhov);s.addEventListener('blur',unhov)});
   $('#donutLeg').innerHTML=MIX.map(([n,v,c])=>`<span><i style="background:var(${c})"></i>${n} ${v}%</span>`).join('');
 }
 const DRV=[['Credit score',.31],['Debt-to-income',.26],['Credit history length',.14],['Recent credit enquiries',.09],['Income stability',.07]];

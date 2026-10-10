@@ -229,3 +229,15 @@ pre.rep{white-space:pre-wrap;font:.82rem/1.6 var(--f-mono);background:var(--bg);
 .rv-hide{opacity:0;transform:translateY(20px)}
 .rv{transition:opacity .7s ease,transform .7s ease}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv-hide{opacity:1;transform:none}}
+
+/* interaction */
+#menuBtn{display:none}
+@media(max-width:960px){#menuBtn{display:grid}.links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:2px;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 20px 16px}.links.open a{padding:10px 0;font-size:1rem}}
+.totop{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--saf);color:var(--saf-ink);font-size:1.2rem;font-weight:700;z-index:40;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.tip{position:absolute;top:6px;pointer-events:none;background:var(--surf2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:.74rem/1.5 var(--f-mono);white-space:nowrap;z-index:3}
+.seg-d{cursor:pointer;transition:opacity .2s,stroke-width .2s;outline:none}
+.seg-d:hover,.seg-d:focus{stroke-width:7.5}
+.card:hover,.panel:hover{border-color:color-mix(in srgb,var(--saf) 55%,var(--line))}
+.hb .r{cursor:default}.hb .r:hover .fg{filter:brightness(1.2)}
+tbody tr:hover td{background:var(--surf2)}
+.langs span{transition:transform .15s,border-color .15s}.langs span:hover{transform:translateY(-2px);border-color:var(--saf)}
